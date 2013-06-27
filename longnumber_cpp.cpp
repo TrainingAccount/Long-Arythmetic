@@ -78,12 +78,12 @@ void LongNum::toFile(const char * FileName)
 	writingLongNumberToFile(FileName, Number);
 }
 
-int LongNum::operator ==(const LongNum &second)
+int LongNum::operator ==(LongNum &second)
 {
 	return (parity(Number, second.getNumber()));
 }
 
-int LongNum::operator >(const LongNum &second)
+int LongNum::operator >(LongNum &second)
 {
 	return (more(Number, second.getNumber()));
 }
