@@ -477,9 +477,9 @@ LongNumber LongModulePow(LongNumber FirstNumber, LongNumber SecondNumber, LongNu
 int parity (LongNumber FirstNumber, LongNumber SecondNumber)
 {
 	int i = 0;
-	if (FirstNumber.length == SecondNumber.length)	
-		for (i = FirstNumber.length - 1; i >= 0; --i)
-			if (FirstNumber.digits[i] == SecondNumber.digits[i])
+	if (FirstNumber.Length == SecondNumber.Length)	
+		for (i = FirstNumber.Length - 1; i >= 0; --i)
+			if (FirstNumber.Digits[i] == SecondNumber.Digits[i])
 				return 1;
 	return 0;
 }
@@ -487,14 +487,14 @@ int parity (LongNumber FirstNumber, LongNumber SecondNumber)
 int more (LongNumber FirstNumber, LongNumber SecondNumber)
 {
 	int i = 0;
-	if (FirstNumber.length > SecondNumber.length)
+	if (FirstNumber.Length > SecondNumber.Length)
 		return 1;
-	if (FirstNumber.length == SecondNumber.length)	
-		for (i = FirstNumber.length - 1; i >= 0; --i)
+	if (FirstNumber.Length == SecondNumber.Length)	
+		for (i = FirstNumber.Length - 1; i >= 0; --i)
 		{
-			if (FirstNumber.digits[i] > SecondNumber.digits[i])
+			if (FirstNumber.Digits[i] > SecondNumber.Digits[i])
 				return 1;
-			if (FirstNumber.digits[i] <= SecondNumber.digits[i])
+			if (FirstNumber.Digits[i] <= SecondNumber.Digits[i])
 				return 0;
 		}
 	return 0;
