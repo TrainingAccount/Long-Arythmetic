@@ -473,3 +473,29 @@ LongNumber LongModulePow(LongNumber FirstNumber, LongNumber SecondNumber, LongNu
 	deleteLongNumber(Two);
 	return Result;
 }
+
+int parity (LongNumber FirstNumber, LongNumber SecondNumber)
+{
+	int i = 0;
+	if (FirstNumber.length == SecondNumber.length)	
+		for (i = FirstNumber.length - 1; i >= 0; --i)
+			if (FirstNumber.digits[i] == SecondNumber.digits[i])
+				return 1;
+	return 0;
+}
+
+int more (LongNumber FirstNumber, LongNumber SecondNumber)
+{
+	int i = 0;
+	if (FirstNumber.length > SecondNumber.length)
+		return 1;
+	if (FirstNumber.length == SecondNumber.length)	
+		for (i = FirstNumber.length - 1; i >= 0; --i)
+		{
+			if (FirstNumber.digits[i] > SecondNumber.digits[i])
+				return 1;
+			if (FirstNumber.digits[i] <= SecondNumber.digits[i])
+				return 0;
+		}
+	return 0;
+}
