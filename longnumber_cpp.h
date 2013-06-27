@@ -20,8 +20,8 @@ public:
 	LongNum(const LongNumber &);
 	const LongNumber& getNumber() const;
 	void toFile(const char *);
-	int LongNum operator ==(LongNum &);
-	int LongNum operator >(LongNum &);
+	int operator ==(const LongNum &);
+	int operator >(const LongNum &);
 private:
 	LongNumber Number;
 };
