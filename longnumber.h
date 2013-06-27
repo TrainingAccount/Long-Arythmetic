@@ -28,3 +28,5 @@ LongNumber LongModulePow(LongNumber, LongNumber, LongNumber);
 
 LongNumber LongModule(LongNumber, LongNumber);
 
+int parity(LongNumber, LongNumber);
+int more(LongNumber, LongNumber);
