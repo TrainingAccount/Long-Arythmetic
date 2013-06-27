@@ -70,7 +70,7 @@ LongNumber readingLongNumberFromFile(const char *Name)
 	fseek(FileForInput, 0, SEEK_END);
 	Size = ftell(FileForInput) - Sign;
 	fseek(FileForInput, Sign, SEEK_SET);
-	Result = createNewLongNumber(ceil(Size / 8));
+	Result = createNewLongNumber(ceil(Size / 8.));
 	
 	Offset = Size % 8;
 	int i;
