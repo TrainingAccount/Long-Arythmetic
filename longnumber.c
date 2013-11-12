@@ -191,15 +191,17 @@ LongNumber LongSubtractionPrivate(LongNumber FirstNumber, LongNumber SecondNumbe
 
 LongNumber LongAddition(LongNumber FirstNumber, LongNumber SecondNumber) 
 {
-	if (FirstNumber.Sign == FirstNumber.Sign) 
-	{
-		return LongAdditionPrivate(FirstNumber, SecondNumber);
-	}
-	else
-	{
-		return LongSubtractionPrivate(FirstNumber, SecondNumber);
-	}
+        if (!FirstNumber.Sign && FirstNumber.Sign) 
+        {
+		return LongSubtractionPrivate(FirstNumber, SecondNumber);                
+        }
+	if (FirstNumber.Sign && !FirstNumber.Sign) 
+        {
+		return LongSubtractionPrivate(SecondNumber, FirstNumber);                
+        }
+return LongAdditionPrivate(FirstNumber, SecondNumber);
 }
+
 
 LongNumber LongSubtraction(LongNumber FirstNumber, LongNumber SecondNumber) 
 {
