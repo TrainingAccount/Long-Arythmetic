@@ -11,6 +11,7 @@ void deleteLongNumber(LongNumber);
 LongNumber removeLeadNulls(LongNumber); 
 
 LongNumber readingLongNumberFromFile(const char *);
+LomgMumber readingLongNumberFromString(const char *);
 void writingLongNumberToFile(const char *, LongNumber);
 
 LongNumber LongAdditionPrivate(LongNumber, LongNumber);
