@@ -12,6 +12,11 @@ LongNum::LongNum()
 	Number = createNewLongNumber(0);
 }
 
+LongNum::LongNum(const char* ) 
+{
+	Number = readingLongNumberFromString(StringName);
+}
+
 LongNum::~LongNum() 
 {
 	if (Number.Digits)
