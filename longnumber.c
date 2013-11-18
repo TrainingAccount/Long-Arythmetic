@@ -92,6 +92,56 @@ LongNumber readingLongNumberFromFile(const char *Name)
 	return removeLeadNulls(Result);
 }
 
+LongNumber readingLongNumber (char *String) 
+{
+	LongNumber Result;
+	char SignCharacter, IntBuffer[9];
+	int Size, Sign, Offset, Count = 0, Delimiter;
+
+	scanf ("%c", SignCharacter);
+	if (SignCharacter == '-')
+		Sign = 1; 
+	else
+		Sign = 0;
+	Result.Sign = Sign;
+
+	Size = strlen (&String) - Sign;
+	Result = createNewLongNumber(ceil(Size / 8.));
+	
+	Offset = Size % 8;
+	int i, k;
+	for (i = Result.Length - 1; i >= 0; --i) 
+	{
+		if (Offset == 0) 
+			Count = 8;
+		else 
+		{
+			Count = Offset;
+			Offset = 0;
+		}
+		
+		k = 0;
+		if (Sign)
+		{
+			strcpy (IntBuffer, SignCharacter)
+			count--;
+			k++;
+			Sign = !Sign;
+		}
+		
+		while (count)
+		{
+			scanf ("%c", IntBuffer[k]);
+			k++;
+			count--;
+		}
+		
+		Result.Digits[i] = atoi(IntBuffer);
+	}
+
+	return removeLeadNulls(Result);
+}
+
 void writingLongNumberToFile(const char *Name, LongNumber Number) 
 {
 	FILE *FileForOutput = fopen(Name, "w+");
