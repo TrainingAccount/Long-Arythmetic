@@ -92,24 +92,24 @@ LongNumber readingLongNumberFromFile(const char *Name)
 	return removeLeadNulls(Result);
 }
 
-LongNumber readingLongNumber (char *String) 
+LongNumber readingLongNumberFromString (char *StringName) 
 {
 	LongNumber Result;
 	char SignCharacter, IntBuffer[9];
 	int Size, Sign, Offset, Count = 0, Delimiter;
 
-	scanf ("%c", SignCharacter);
+	strncpy (SignCharacter, StringName, 1);
 	if (SignCharacter == '-')
 		Sign = 1; 
 	else
 		Sign = 0;
 	Result.Sign = Sign;
 
-	Size = strlen (&String) - Sign;
+	Size = strlen (&StringName) - Sign;
 	Result = createNewLongNumber(ceil(Size / 8.));
 	
 	Offset = Size % 8;
-	int i, k;
+	int i, k = 0, m;
 	for (i = Result.Length - 1; i >= 0; --i) 
 	{
 		if (Offset == 0) 
@@ -120,18 +120,18 @@ LongNumber readingLongNumber (char *String)
 			Offset = 0;
 		}
 		
-		k = 0;
-		if (Sign)
+		if (!sign)
 		{
-			strcpy (IntBuffer, SignCharacter)
+			strcpy (IntBuffer, SignCharacter);
 			count--;
 			k++;
 			Sign = !Sign;
 		}
 		
+		m = count;
 		while (count)
 		{
-			scanf ("%c", IntBuffer[k]);
+			IntBuffer[m - count] = StringName[k];
 			k++;
 			count--;
 		}
