@@ -12,7 +12,7 @@ LongNum::LongNum()
 	Number = createNewLongNumber(0);
 }
 
-LongNum::LongNum(const char* ) 
+LongNum::LongNum(const char* StringName) 
 {
 	Number = readingLongNumberFromString(StringName);
 }
