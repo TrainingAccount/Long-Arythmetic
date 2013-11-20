@@ -83,6 +83,11 @@ void LongNum::toFile(const char * FileName)
 	writingLongNumberToFile(FileName, Number);
 }
 
+void LongNum::toString()
+{
+	writingLongNumberToString(Number);
+}
+
 int LongNum::operator ==(const LongNum &second)
 {
 	return (parity(Number, second.getNumber()));
