@@ -21,6 +21,7 @@ public:
 	LongNum(const LongNumber &);
 	const LongNumber& getNumber() const;
 	void toFile(const char *);
+	void toString();
 	int operator ==(const LongNum &);
 	int operator >(const LongNum &);
 private:
