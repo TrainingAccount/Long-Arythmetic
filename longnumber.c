@@ -96,7 +96,7 @@ LongNumber readingLongNumberFromString (char *StringName)
 {
 	LongNumber Result;
 	char SignCharacter, IntBuffer[9];
-	int Size, Sign, Offset, Count = 0, Delimiter;
+	int Size, Sign, Offset, Count = 0;
 
 	strncpy (SignCharacter, StringName, 1);
 	if (SignCharacter == '-')
@@ -173,6 +173,28 @@ void writingLongNumberToFile(const char *Name, LongNumber Number)
 	fclose(FileForOutput);
 }
 
+void writingLongNumberToString(LongNumber Number) 
+{
+	if (Number.Length == 0) 
+	{
+		printf("0");
+	} 
+	else 
+	{
+		if (Number.Sign) 
+		{
+			printf("-");
+		}
+		printf("%d", Number.Digits[Number.Length - 1]);
+		
+		int i;
+		for (i = Number.Length - 2; i >= 0; --i) 
+		{
+			printf("%.8d", Number.Digits[i]);
+		}
+	}
+}
+
 LongNumber LongAdditionPrivate(LongNumber FirstNumber, LongNumber SecondNumber) 
 {
 	int NewSize;
@@ -196,7 +218,7 @@ LongNumber LongAdditionPrivate(LongNumber FirstNumber, LongNumber SecondNumber)
 		CurrentBuffer = FinResult.quot; 
 	}
 	
-	if (!FirstNumber.Sign)
+	if (FirstNumber.Sign)
 		Result.Sign = !Result.Sign;
 
 	if (Result.Digits[Result.Length - 1] == 0)
@@ -232,7 +254,7 @@ LongNumber LongSubtractionPrivate(LongNumber FirstNumber, LongNumber SecondNumbe
 		Result.Digits[i] = CurrentBuffer;
 	}
 	
-	if (!FirstNumber.Sign)
+	if (FirstNumber.Sign)
 		Result.Sign = !Result.Sign;
 		
 	Result = removeLeadNulls(Result);	
@@ -241,11 +263,11 @@ LongNumber LongSubtractionPrivate(LongNumber FirstNumber, LongNumber SecondNumbe
 
 LongNumber LongAddition(LongNumber FirstNumber, LongNumber SecondNumber) 
 {
-        if (!FirstNumber.Sign && FirstNumber.Sign) 
+        if (!FirstNumber.Sign && SecondNumber.Sign) 
         {
 		return LongSubtractionPrivate(FirstNumber, SecondNumber);                
         }
-	if (FirstNumber.Sign && !FirstNumber.Sign) 
+	if (FirstNumber.Sign && !SecondNumber.Sign) 
         {
 		return LongSubtractionPrivate(SecondNumber, FirstNumber);                
         }
@@ -255,16 +277,18 @@ return LongAdditionPrivate(FirstNumber, SecondNumber);
 
 LongNumber LongSubtraction(LongNumber FirstNumber, LongNumber SecondNumber) 
 {
-	if (FirstNumber.Sign != SecondNumber.Sign) 
+	if (FirstNumber.Sign && !SecondNumber.Sign) 
 	{
+		SecondNumber.Sign = !SecondNumber.Sign;
+		return LongAdditionPrivate(FirstNumber, SecondNumber);
+	}
+	else if (!FirstNumber.Sign && SecondNumber.Sign) 
+	{
+		SecondNumber.Sign = !SecondNumber.Sign;
 		return LongAdditionPrivate(FirstNumber, SecondNumber);
 	}
 	else
-	{
-		if (FirstNumber.Length < SecondNumber.Length)
-			return LongSubtractionPrivate(SecondNumber, FirstNumber);
 		return LongSubtractionPrivate(FirstNumber, SecondNumber);
-	}
 }
 
 void SubtractForDividing(LongNumber *FirstNumber, LongNumber SecondNumber) 
