@@ -8,7 +8,6 @@ class LongNum
 public:
 	LongNum();
 	LongNum(const char *);
-	LongNum(const char *);
 	~LongNum();
 	LongNum(const LongNum &);
 	LongNum &operator =(const LongNum &); 
