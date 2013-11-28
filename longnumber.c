@@ -34,7 +34,7 @@ LongNumber CopyLongNumber(LongNumber LNumberForCopying)
 	return Result;
 }
 
-LongNumber removeLeadNulls(LongNumber Number) 
+LongNumber removingLeadNulls(LongNumber Number) 
 {
 	int i;
 	for (i = Number.Length - 1; i >= 0; --i) 
@@ -89,7 +89,7 @@ LongNumber readingLongNumberFromFile(const char *Name)
 	}
 
 	fclose(FileForInput);
-	return removeLeadNulls(Result);
+	return removingLeadNulls(Result);
 }
 
 LongNumber readingLongNumberFromString (const char *StringName) 
@@ -103,10 +103,10 @@ LongNumber readingLongNumberFromString (const char *StringName)
 		Sign = 1; 
 	else
 		Sign = 0;
-	Result.Sign = Sign;
-
-	Size = strlen (&StringName) - Sign;
+	
+	Size = strlen (StringName) - Sign;
 	Result = createNewLongNumber(ceil(Size / 8.));
+	Result.Sign = Sign;
 	
 	Offset = Size % 8;
 	int i, k = 0, m;
@@ -129,6 +129,7 @@ LongNumber readingLongNumberFromString (const char *StringName)
 		}
 		
 		m = Count;
+		IntBuffer(count) = 0;
 		while (Count)
 		{
 			IntBuffer[m - Count] = StringName[k];
@@ -139,7 +140,7 @@ LongNumber readingLongNumberFromString (const char *StringName)
 		Result.Digits[i] = atoi(IntBuffer);
 	}
 
-	return removeLeadNulls(Result);
+	return removingLeadNulls(Result);
 }
 
 void writingLongNumberToFile(const char *Name, LongNumber Number) 
@@ -257,7 +258,7 @@ LongNumber LongSubtractionPrivate(LongNumber FirstNumber, LongNumber SecondNumbe
 	if (FirstNumber.Sign)
 		Result.Sign = !Result.Sign;
 		
-	Result = removeLeadNulls(Result);	
+	Result = removingLeadNulls(Result);	
 	return Result;
 }
 
@@ -310,7 +311,7 @@ void SubtractForDividing(LongNumber *FirstNumber, LongNumber SecondNumber)
 		FirstNumber->Digits[i] = CurrentBuffer;
 	}	
 
-	*FirstNumber = removeLeadNulls(*FirstNumber);
+	*FirstNumber = removingLeadNulls(*FirstNumber);
 }
 
 LongNumber LongMultiplying(LongNumber FirstNumber, LongNumber SecondNumber) 
@@ -337,7 +338,7 @@ LongNumber LongMultiplying(LongNumber FirstNumber, LongNumber SecondNumber)
 			CurrentBuffer = FinResult.quot; 
 		}
 	}
-	return removeLeadNulls(Result);	
+	return removingLeadNulls(Result);	
 }
 
 LongNumber LongDividing(LongNumber FirstNumber, LongNumber SecondNumber)
@@ -482,7 +483,7 @@ LongNumber LongModule(LongNumber FirstNumber, LongNumber SecondNumber)
 		SubtractForDividing(&Part, SecondNumberSubproduct);
 		deleteLongNumber(SecondNumberSubproduct);
 	}
-	Part = removeLeadNulls(Part);
+	Part = removingLeadNulls(Part);
 
 	if (Part.Length != 0 && (FirstNumber.Sign != SecondNumber.Sign)) 
 		Part = LongSubtractionPrivate(SecondNumber, Part);
