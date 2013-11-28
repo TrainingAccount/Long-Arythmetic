@@ -92,7 +92,7 @@ LongNumber readingLongNumberFromFile(const char *Name)
 	return removeLeadNulls(Result);
 }
 
-LongNumber readingLongNumberFromString (char *StringName) 
+LongNumber readingLongNumberFromString (const char *StringName) 
 {
 	LongNumber Result;
 	char SignCharacter, IntBuffer[9];
@@ -120,20 +120,20 @@ LongNumber readingLongNumberFromString (char *StringName)
 			Offset = 0;
 		}
 		
-		if (!sign)
+		if (!Sign)
 		{
 			strcpy (IntBuffer, SignCharacter);
-			count--;
+			Count--;
 			k++;
 			Sign = !Sign;
 		}
 		
-		m = count;
-		while (count)
+		m = Count;
+		while (Count)
 		{
-			IntBuffer[m - count] = StringName[k];
+			IntBuffer[m - Count] = StringName[k];
 			k++;
-			count--;
+			Count--;
 		}
 		
 		Result.Digits[i] = atoi(IntBuffer);
