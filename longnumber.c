@@ -129,7 +129,7 @@ LongNumber readingLongNumberFromString (const char *StringName)
 		}
 		
 		m = Count;
-		IntBuffer[Сount] = 0;
+		IntBuffer[m] = 0;
 		while (Count)
 		{
 			IntBuffer[m - Count] = StringName[k];
