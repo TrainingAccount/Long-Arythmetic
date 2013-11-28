@@ -2,12 +2,10 @@
 #include "longnumber_cpp.h"
 #include <cstdio>
 
-/*
-LongNum::LongNum(const char* FileName) 
+LongNum::LongNum(const char* FileName, const char* c) 
 {
 	Number = readingLongNumberFromFile(FileName);
 }
-*/
 
 LongNum::LongNum() 
 {
