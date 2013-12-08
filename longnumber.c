@@ -266,10 +266,12 @@ LongNumber LongAddition(LongNumber FirstNumber, LongNumber SecondNumber)
 {
         if (!FirstNumber.Sign && SecondNumber.Sign) 
         {
+		SecondNumber.Sign = !SecondNumber.Sign;
 		return LongSubtractionPrivate(FirstNumber, SecondNumber);                
         }
 	if (FirstNumber.Sign && !SecondNumber.Sign) 
         {
+		FirstNumber.Sign = !FirstNumber.Sign;
 		return LongSubtractionPrivate(SecondNumber, FirstNumber);                
         }
 return LongAdditionPrivate(FirstNumber, SecondNumber);
