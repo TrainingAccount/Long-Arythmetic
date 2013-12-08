@@ -7,7 +7,6 @@ class LongNum
 {
 public:
 	LongNum();
-	LongNum(const char *, const char *);
 	LongNum(const char *);
 	~LongNum();
 	LongNum(const LongNum &);
